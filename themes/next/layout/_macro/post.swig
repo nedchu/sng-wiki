@@ -117,6 +117,31 @@
             </span>
           {% endif %}
 
+          {% if not (post.author and post.author.length) %}
+            {% set author_list = config.default_author %}
+          {% else %}
+            {% set author_list = post.author %}
+          {% endif %}
+          {% if author_list and author_list.length %}
+            {% if theme.post_meta.created_at or theme.post_meta.updated_at or (post.categories and post.categories.length and theme.post_meta.categories) %}
+              <span class="post-meta-divider">|</span>
+            {% endif %}
+            <span class="post-author" >
+              
+              {% for cat in author_list %}
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-at"></i>
+                  <span itemprop="name">{{ cat }}</span>
+                </span>
+
+                {% set cat_length = post.categories.length %}
+                {% if cat_length > 1 and loop.index !== cat_length %}
+                  {{ __('symbol.comma') }}
+                {% endif %}
+              {% endfor %}
+            </span>
+          {% endif %}
+
           {% if post.comments %}
             {% if (theme.duoshuo and theme.duoshuo.shortname) or theme.duoshuo_shortname %}
               <span class="post-comments-count">

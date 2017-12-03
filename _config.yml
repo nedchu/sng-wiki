@@ -83,3 +83,5 @@ deploy:
   type: git
   repo: https://github.com/nedchu/sng-wiki.git
   branch: master
+
+default_author: [nedchu]
