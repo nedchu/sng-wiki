@@ -85,3 +85,9 @@ deploy:
   branch: master
 
 default_author: [nedchu]
+
+kramed:
+  breaks: false
+
+markdown_it_plus:
+  breaks: false
