@@ -81,7 +81,7 @@ math:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/nedchu/sng-wiki.git
+  repo: git@github.com:nedchu/sng-wiki.git
   branch: master
 
 default_author: [nedchu]
