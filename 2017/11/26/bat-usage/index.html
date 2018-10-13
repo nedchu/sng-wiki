@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/sng-wiki/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/sng-wiki/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/sng-wiki/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/sng-wiki/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/sng-wiki/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/sng-wiki/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/sng-wiki/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="批处理," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文介绍了Batch的基本知识，基本命令。通过这些知识构建NOIP竞赛中能够使用的验证程序。正式比赛中编写该程序以降低在现场赛中发生低级错误的可能性。也可以构建自动化的对拍程序验证程序的正确性。 本文的部分程序打包附在文末，需要的同学请自行下载。">
+<meta name="keywords" content="批处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Batch基础教程">
+<meta property="og:url" content="https://nedchu.github.io/2017/11/26/bat-usage/index.html">
+<meta property="og:site_name" content="少年宫NOIP竞赛班维基">
+<meta property="og:description" content="本文介绍了Batch的基本知识，基本命令。通过这些知识构建NOIP竞赛中能够使用的验证程序。正式比赛中编写该程序以降低在现场赛中发生低级错误的可能性。也可以构建自动化的对拍程序验证程序的正确性。 本文的部分程序打包附在文末，需要的同学请自行下载。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-30T06:08:50.964Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Batch基础教程">
+<meta name="twitter:description" content="本文介绍了Batch的基本知识，基本命令。通过这些知识构建NOIP竞赛中能够使用的验证程序。正式比赛中编写该程序以降低在现场赛中发生低级错误的可能性。也可以构建自动化的对拍程序验证程序的正确性。 本文的部分程序打包附在文末，需要的同学请自行下载。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/sng-wiki/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nedchu.github.io/2017/11/26/bat-usage/"/>
+
+
+
+
+
+  <title>Batch基础教程 | 少年宫NOIP竞赛班维基</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/sng-wiki/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">少年宫NOIP竞赛班维基</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/sng-wiki/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/sng-wiki/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/sng-wiki/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/sng-wiki/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nedchu.github.io/sng-wiki/2017/11/26/bat-usage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="NOIP竞赛班教练组">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/sng-wiki/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="少年宫NOIP竞赛班维基">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Batch基础教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-26T19:30:53+08:00">
+                2017-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/sng-wiki/categories/教程/" itemprop="url" rel="index">
+                    <span itemprop="name">教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+          
+            
+              <span class="post-meta-divider">|</span>
+            
+            <span class="post-author" >
+              
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-at"></i>
+                  <span itemprop="name">nedchu</span>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文介绍了Batch的基本知识，基本命令。通过这些知识构建NOIP竞赛中能够使用的验证程序。正式比赛中编写该程序以降低在现场赛中发生低级错误的可能性。也可以构建自动化的对拍程序验证程序的正确性。</p>
+<p>本文的部分程序打包附在文末，需要的同学请自行下载。</p>
+<a id="more"></a>
+<h1 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h1><h2 id="什么是Batch"><a href="#什么是Batch" class="headerlink" title="什么是Batch"></a>什么是Batch</h2><p>Batch文件又称为批处理文件，以<code>.bat</code>为后缀，是一种能够被DOS系统中的命令行(cmd.exe)运行的脚本文件。其作用和地位类似于Unix系统中的Shell脚本。学会使用批处理/Shell能够更好地使用操作系统交互，实现许多用户界面程序不会提供的功能。除了基本的命令之外，Batch还支持<code>IF,FOR,GOTO</code>等分支操作，不过本文中不会涉及，有兴趣的同学可以自行学习。</p>
+<p>我们可以在命令行之中直接编写Batch命令，回车去运行，也可以写入<code>.bat</code>文件中之后再运行。</p>
+<p>在NOIP竞赛中一般不会涉及Batch编程，但是利用批处理的技术，我们可以很好地检查文件命名是否正确，是否通过样例，更进一步的，我们也可以使用Batch进行自动对拍。</p>
+<h2 id="新建Batch"><a href="#新建Batch" class="headerlink" title="新建Batch"></a>新建Batch</h2><p>在文件夹选项中选择不隐藏扩展名之后，直接新建文本重命名为<code>.bat</code>文件即可。可以编写好之后再重命名，也可以右键文件使用记事本或者其他编辑器进行编辑，比较推荐使用Notepad++。</p>
+<p>Batch和其他代码一样都是文本文件。</p>
+<h2 id="打开命令行"><a href="#打开命令行" class="headerlink" title="打开命令行"></a>打开命令行</h2><p>第一种打开命令行的方式是<code>Win+R</code>输入<code>cmd</code>或者<code>powershell</code>，当不需要使用具体文件夹的文件时使用这种方式比较好。</p>
+<p>第二种打开命令行的方式可以直接在具体文件中打开。在文件夹空白处<code>Shift+右键</code>，打开菜单，Win10中单击<strong>在此处打开Powershell窗口</strong>或者Win7/8中单击<strong>在此处打开命令行</strong>打开命令行窗口。</p>
+<h2 id="运行Batch"><a href="#运行Batch" class="headerlink" title="运行Batch"></a>运行Batch</h2><p>最简单的是双击直接运行<code>.bat</code>文件，也可以在命令行中利用命令直接运行。</p>
+<p>假如文件夹下有程序<code>run.bat</code>那运行以下命令均可以运行该程序：<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">run</span><br><span class="line">run.bat</span><br></pre></td></tr></table></figure></p>
+<p>如果将<code>run.bat</code>所在的路径加入到环境变量<strong>Path</strong>中则可以在任意路径下直接运行该程序。</p>
+<h2 id="Path"><a href="#Path" class="headerlink" title="Path"></a>Path</h2><p><strong>Path</strong>是Windows系统的环境变量，在命令行中若当前路径下没有找到需要的程序，Windows系统就会在<strong>Path</strong>中进一步进行寻找。常用的程序或者自己写出的工具可以加入<strong>Path</strong>中以随时随地方便使用。向<strong>Path</strong>新增路径的步骤为：</p>
+<ol>
+<li>打开我的电脑-&gt;右键我的电脑-&gt;属性</li>
+<li>高级系统设置-&gt;环境变量</li>
+<li>修改用户环境变量中的<strong>Path</strong>，Win10中新建输入即可，Win7/8中加入<code>;</code>然后加上新路径</li>
+</ol>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><ul>
+<li>尝试使用两种方式打开命令行，尝试对某个文件夹<code>Shift+右键</code>打开命令行，进行观察</li>
+<li>新建一个<code>.bat</code>程序，输入<code>echo &quot;Hello, World!&quot;</code>，尝试运行</li>
+<li>尝试将本机中的g++编译器，将它所在的文件夹加入到<strong>Path</strong>中，运行命令行输入<code>g++ -v</code>检测</li>
+</ul>
+<h1 id="Batch基本命令"><a href="#Batch基本命令" class="headerlink" title="Batch基本命令"></a>Batch基本命令</h1><h2 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h2><p>帮助命令是十分重要的命令，学会帮助命令之后可以在命令行中自行查看工具的使用方法。以下命令为帮助命令的基本使用：<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">help</span></span><br><span class="line"><span class="built_in">cd</span> /?</span><br><span class="line"><span class="built_in">help</span> <span class="built_in">cd</span></span><br></pre></td></tr></table></figure></p>
+<p>第一行的<code>help</code>命令会显示所有的基本命令和解释，后两行命令会显示<code>cd</code>命令的使用方法，<code>help</code>中显示的命令均可以利用后两行的命令显示使用方法，许多命令行程序也会提供基本的帮助。</p>
+<h2 id="echo命令"><a href="#echo命令" class="headerlink" title="echo命令"></a>echo命令</h2><p><strong>echo</strong>就是回声的意思，后面跟上一个字符串时候就会直接输出后面这个字符串。</p>
+<p>运行<code>.bat</code>程序的时候，程序会在命令行中再输出一遍所有执行的命令。如果在<code>.bat</code>中输入<code>@echo off</code>，这些命令就不会再输出了。</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">echo</span> sss</span><br><span class="line"><span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+<p>后两句的命令本身不会被输出到命令行中，但是它们执行后的结果仍然会被输出到命令行中。</p>
+<h2 id="fc命令"><a href="#fc命令" class="headerlink" title="fc命令"></a>fc命令</h2><p><strong>fc</strong>就是file compare，能够比较两个文件的差异，在Unix下对应的程序为<strong>diff</strong>，fc能够传入两个参数，即两个需要比较的文件的路径。</p>
+<figure class="highlight bat"><figcaption><span>fc_sample.bat</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">fc a.txt b.txt</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">errorlevel</span> <span class="number">1</span> (</span><br><span class="line">    <span class="built_in">echo</span> different</span><br><span class="line">) <span class="keyword">else</span> (</span><br><span class="line">    <span class="built_in">echo</span> same</span><br><span class="line">)</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+<p>上面这段代码能够比较<code>a.txt</code>和<code>b.txt</code>两个文件，如果两个文件不同就输出<code>different</code>否则输出<code>same</code>，其中<code>errorlevel</code>为0是相同，而上面的<code>if errorlevel 1</code>是看<code>errorlevel</code>是否大于等于1。<strong>注意<code>else</code>不可以再换行</strong>。</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>Batch中变量赋值通过<code>set</code>进行，默认为字符串，可以通过<code>/a</code>指定是整数，变量通过在两边加<code>%</code>来使用。<br><figure class="highlight bat"><figcaption><span>var_sample.bat</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">set</span> a=<span class="number">111</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">%a%</span>.cpp</span><br><span class="line"><span class="built_in">set</span> /a b = <span class="number">5</span></span><br><span class="line"><span class="built_in">set</span> /a b = <span class="variable">%b%</span> + <span class="number">1</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">%b%</span></span><br><span class="line"><span class="built_in">pause</span></span><br><span class="line"></span><br><span class="line">=== output:</span><br><span class="line"><span class="number">111</span>.cpp</span><br><span class="line"><span class="number">6</span></span><br></pre></td></tr></table></figure></p>
+<p>上面这段代码赋值了变量<code>a</code>然后接上<code>.cpp</code>后输出，然后赋值<code>b</code>为整数5，加一后输出。可以看出Batch当中字符串直接写在一起就是连接了。<strong>注意字符串赋值的时候等号两边不能加空格。</strong></p>
+<h2 id="g"><a href="#g" class="headerlink" title="g++"></a>g++</h2><p>g++是一款使用十分广泛的c++编译器。进行编译输出可执行文件的典型命令如下：<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -o main main.cpp -std=c++<span class="number">11</span> -O2</span><br></pre></td></tr></table></figure></p>
+<p>以上程序主要的组成为：</p>
+<ul>
+<li><code>g++</code>：指定了使用g++编译器</li>
+<li><code>-o</code>：指定了输出路径，此处命令中为<code>main</code>就会输出到当前文件夹中的<code>main.exe</code></li>
+<li><code>main.cpp</code>：指定了输入的源文件</li>
+<li><code>-std=c++11</code>：指定了使用c++11标准编译文件</li>
+<li><code>-O2</code>：指定了使用O2编译优化，编译优化能够在编译中优化代码，加快实际执行速度，最高优化等级为O3但O3存在一些风险，一般使用O2优化，NOIP中不开启编译优化</li>
+</ul>
+<p><br></p>
+<p>使用g++需要注意一下问题：</p>
+<ul>
+<li>NOIP中若要估计实际运行时间，请关闭<code>-O2</code>的选项</li>
+<li>查看帮助请使用<code>g++ --help</code>，Unix系习惯<code>--help</code>参数为帮助，Windows习惯<code>/?</code></li>
+</ul>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>函数是一种抽象手段，让人们从重复劳动中解放出来。Batch也能够编写函数，利用<code>:function</code>来指定函数的开始，然后利用<code>call</code>来进行函数调用和指定参数，函数中第一个参数通过<code>%1</code>获取，之后的以此类推，以下是编译函数的实例：<br><figure class="highlight bat"><figcaption><span>func_sample.bat</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="keyword">call</span> :compile main</span><br><span class="line"><span class="built_in">pause</span></span><br><span class="line"><span class="keyword">goto</span> :eof</span><br><span class="line"></span><br><span class="line">:compile</span><br><span class="line">  g++ -o %<span class="number">1</span> %<span class="number">1</span>.cpp -std=c++<span class="number">11</span> -O2</span><br><span class="line"><span class="keyword">goto</span> :eof</span><br></pre></td></tr></table></figure></p>
+<p>以上程序和g++一章中的编译指令等价，不过通过更换函数的第一个参数<code>main</code>，以上程序能够编译当前目录下的其他的程序。<code>goto :eof</code>表示结束，如果不加上程序就会自动执行一遍<code>:compile</code>函数，所以主函数和其他函数的后面都需要加上<code>goto :eof</code>，最后一个函数后面不用加，不过除非是只有主函数建议加上，之后增加新的函数就不容易出错了。</p>
+<h2 id="练习-1"><a href="#练习-1" class="headerlink" title="练习"></a>练习</h2><ul>
+<li>尝试在命令行下执行g++编译命令，尝试编译一些错误的程序</li>
+<li>尝试写一个函数输出第一个参数，更换参数调用几次函数</li>
+<li>尝试写一个函数输出两个参数的和</li>
+</ul>
+<h1 id="实用程序的构建"><a href="#实用程序的构建" class="headerlink" title="实用程序的构建"></a>实用程序的构建</h1><h2 id="检查文件名，测试样例是否通过"><a href="#检查文件名，测试样例是否通过" class="headerlink" title="检查文件名，测试样例是否通过"></a>检查文件名，测试样例是否通过</h2><p>NOIP中需要指定文件进行输入输出，一类常见的错误就是文件名输入错误，然后许多时候也可能因为题目输出中的小错误而犯错（大小写，格式错误）。</p>
+<p>对于这些错误，除了保持小心谨慎的态度之外还有一种更保险的解决方法就是编写<code>.bat</code>脚本进行简单的测试。NOIP中对于每一题<code>name</code>，源文件为<code>name.cpp</code>，输入文件为<code>name.in</code>，输出文件为<code>name.out</code>。在此基础上，我们令<code>name.in</code>为样例输入文件，并新建一个文件<code>name.ans</code>为样例的输出。</p>
+<p>以下程序假设有三题分别为noip,noi,ioi则可以构建以下的程序：</p>
+<figure class="highlight bat"><figcaption><span>check_name.bat</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"></span><br><span class="line"><span class="keyword">call</span> :run noip</span><br><span class="line"><span class="keyword">call</span> :run noi</span><br><span class="line"><span class="keyword">call</span> :run ioi</span><br><span class="line"><span class="built_in">pause</span></span><br><span class="line"><span class="keyword">goto</span> :eof</span><br><span class="line"></span><br><span class="line">:run</span><br><span class="line"><span class="built_in">set</span> file=%<span class="number">1</span></span><br><span class="line">g++ -o <span class="variable">%file%</span> <span class="variable">%file%</span>.cpp -std=c++<span class="number">11</span></span><br><span class="line"><span class="variable">%file%</span></span><br><span class="line">fc <span class="variable">%file%</span>.out <span class="variable">%file%</span>.ans</span><br><span class="line"><span class="keyword">goto</span> :eof</span><br></pre></td></tr></table></figure>
+<h2 id="对拍程序"><a href="#对拍程序" class="headerlink" title="对拍程序"></a>对拍程序</h2><p>竞赛中常常遇到一些题，小数据可以暴力，大数据使用暴力会超时。这类题目想要保证正确，一种很好的手段叫做对拍，具体来说就是写出大数据的解和暴力解，验证小数据上两个解的输出是否相同。</p>
+<p>第一种对拍的方法是将暴力解直接写进大数据的解里面，分成两个函数，直接输出两份答案，肉眼看是否一致，这种方法的好处在于方便，如果错误比较明显的话还是可以很快找出问题的。</p>
+<p>第二种对拍的方法是将暴力解写进另一个源文件中，同时构建一个小数据的生成器。使用生成器生成数据让两个程序去跑，不断循环直到两个程序的输出不一致。</p>
+<p>以下程序是一个例子，固定<code>main</code>为程序名，<code>gen.cpp</code>为数据生成器，<code>brute.cpp</code>为暴力程序，输出到文件<code>brute.out</code>:<br><figure class="highlight bat"><figcaption><span>testm.bat</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> sol=main</span><br><span class="line"></span><br><span class="line"><span class="keyword">call</span> :compile gen</span><br><span class="line"><span class="keyword">call</span> :compile brute</span><br><span class="line"><span class="keyword">call</span> :compile <span class="variable">%sol%</span></span><br><span class="line"></span><br><span class="line">:loop</span><br><span class="line">gen.exe &gt; <span class="variable">%sol%</span>.<span class="keyword">in</span></span><br><span class="line">brute.exe</span><br><span class="line"><span class="variable">%sol%</span>.exe</span><br><span class="line"></span><br><span class="line">fc brute.out <span class="variable">%sol%</span>.out &gt; <span class="built_in">nul</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">errorlevel</span> <span class="number">1</span> (</span><br><span class="line">	<span class="built_in">type</span> <span class="variable">%sol%</span>.<span class="keyword">in</span></span><br><span class="line">	fc brute.out <span class="variable">%sol%</span>.out</span><br><span class="line">  <span class="built_in">pause</span></span><br><span class="line">	<span class="keyword">goto</span> :eof</span><br><span class="line">)</span><br><span class="line"><span class="keyword">goto</span> :loop</span><br><span class="line"></span><br><span class="line">:compile</span><br><span class="line">g++ -o %<span class="number">1</span>.exe %<span class="number">1</span>.cpp -std=c++<span class="number">11</span> -O2</span><br><span class="line"><span class="keyword">goto</span> :eof</span><br></pre></td></tr></table></figure></p>
+<p>给<code>sol</code>赋值为其他名字可以测试不同的程序，也可以写成<code>set sol=%1</code>然后将程序名作为整个程序的参数传入，比如在命令行中执行<code>testm main</code>，<code>%1</code>会获得命令行调用的第一个参数。</p>
+<p><code>n &gt;&gt; 1</code>和<code>n / 2</code>在负数时结果可能不同，可以写以下程序进行验证，稍微跑一会就可以找到错误的例子了：<br><figure class="highlight cpp"><figcaption><span>main.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">freopen(<span class="string">"main.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">freopen(<span class="string">"main.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, n &gt;&gt; <span class="number">1</span>);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight cpp"><figcaption><span>brute.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">freopen(<span class="string">"main.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">freopen(<span class="string">"brute.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, n / <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><figcaption><span>gen.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">srand(time(<span class="number">0</span>));</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, (rand() % <span class="number">100</span>) - <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="资源下载"><a href="#资源下载" class="headerlink" title="资源下载"></a>资源下载</h1><a href="/sng-wiki/2017/11/26/bat-usage/bat-usage.rar" title="[源码合集下载]">[源码合集下载]</a>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/sng-wiki/tags/批处理/" rel="tag"># 批处理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/sng-wiki/2017/11/25/hello-world/" rel="next" title="Hello, World!">
+                <i class="fa fa-chevron-left"></i> Hello, World!
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/sng-wiki/2017/12/02/2017-12-2-sol/" rel="prev" title="2017.12.2 定段赛第一场 题解">
+                2017.12.2 定段赛第一场 题解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">NOIP竞赛班教练组</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/sng-wiki/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/sng-wiki/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/sng-wiki/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本知识"><span class="nav-number">1.</span> <span class="nav-text">基本知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Batch"><span class="nav-number">1.1.</span> <span class="nav-text">什么是Batch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建Batch"><span class="nav-number">1.2.</span> <span class="nav-text">新建Batch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打开命令行"><span class="nav-number">1.3.</span> <span class="nav-text">打开命令行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行Batch"><span class="nav-number">1.4.</span> <span class="nav-text">运行Batch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Path"><span class="nav-number">1.5.</span> <span class="nav-text">Path</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#练习"><span class="nav-number">1.6.</span> <span class="nav-text">练习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Batch基本命令"><span class="nav-number">2.</span> <span class="nav-text">Batch基本命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#帮助命令"><span class="nav-number">2.1.</span> <span class="nav-text">帮助命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#echo命令"><span class="nav-number">2.2.</span> <span class="nav-text">echo命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fc命令"><span class="nav-number">2.3.</span> <span class="nav-text">fc命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">2.4.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#g"><span class="nav-number">2.5.</span> <span class="nav-text">g++</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">2.6.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#练习-1"><span class="nav-number">2.7.</span> <span class="nav-text">练习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实用程序的构建"><span class="nav-number">3.</span> <span class="nav-text">实用程序的构建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#检查文件名，测试样例是否通过"><span class="nav-number">3.1.</span> <span class="nav-text">检查文件名，测试样例是否通过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对拍程序"><span class="nav-number">3.2.</span> <span class="nav-text">对拍程序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#资源下载"><span class="nav-number">4.</span> <span class="nav-text">资源下载</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NOIP竞赛班教练组</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/sng-wiki/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/sng-wiki/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/sng-wiki/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/sng-wiki/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/sng-wiki/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/sng-wiki/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/sng-wiki/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

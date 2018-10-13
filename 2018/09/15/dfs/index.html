@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/sng-wiki/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/sng-wiki/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/sng-wiki/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/sng-wiki/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/sng-wiki/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/sng-wiki/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/sng-wiki/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="dfs,枚举," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简介枚举和搜索是求解问题时最基础最重要的手段，在实际的应用和算法竞赛中，枚举和搜索无处不在。算法竞赛中的许多问题常常涉及到求解最优的方案或者统计方案，这类问题多数都能使用搜索或者枚举进行求解，当然很多问题由于效率上的要求设计出了更加巧妙的算法。熟练掌握搜索枚举之后，能够简化许多问题的求解，能够更容易进行程序的对拍检验，枚举搜索也是许多算法的基础，掌握好枚举和搜索能够辅助许多重要算法的学习。 枚举和">
+<meta name="keywords" content="dfs,枚举">
+<meta property="og:type" content="article">
+<meta property="og:title" content="枚举搜索">
+<meta property="og:url" content="https://nedchu.github.io/2018/09/15/dfs/index.html">
+<meta property="og:site_name" content="少年宫NOIP竞赛班维基">
+<meta property="og:description" content="简介枚举和搜索是求解问题时最基础最重要的手段，在实际的应用和算法竞赛中，枚举和搜索无处不在。算法竞赛中的许多问题常常涉及到求解最优的方案或者统计方案，这类问题多数都能使用搜索或者枚举进行求解，当然很多问题由于效率上的要求设计出了更加巧妙的算法。熟练掌握搜索枚举之后，能够简化许多问题的求解，能够更容易进行程序的对拍检验，枚举搜索也是许多算法的基础，掌握好枚举和搜索能够辅助许多重要算法的学习。 枚举和">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-30T06:08:50.974Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="枚举搜索">
+<meta name="twitter:description" content="简介枚举和搜索是求解问题时最基础最重要的手段，在实际的应用和算法竞赛中，枚举和搜索无处不在。算法竞赛中的许多问题常常涉及到求解最优的方案或者统计方案，这类问题多数都能使用搜索或者枚举进行求解，当然很多问题由于效率上的要求设计出了更加巧妙的算法。熟练掌握搜索枚举之后，能够简化许多问题的求解，能够更容易进行程序的对拍检验，枚举搜索也是许多算法的基础，掌握好枚举和搜索能够辅助许多重要算法的学习。 枚举和">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/sng-wiki/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nedchu.github.io/2018/09/15/dfs/"/>
+
+
+
+
+
+  <title>枚举搜索 | 少年宫NOIP竞赛班维基</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/sng-wiki/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">少年宫NOIP竞赛班维基</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/sng-wiki/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/sng-wiki/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/sng-wiki/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/sng-wiki/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nedchu.github.io/sng-wiki/2018/09/15/dfs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="NOIP竞赛班教练组">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/sng-wiki/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="少年宫NOIP竞赛班维基">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">枚举搜索</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-15T14:39:43+08:00">
+                2018-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/sng-wiki/categories/教程/" itemprop="url" rel="index">
+                    <span itemprop="name">教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+          
+            
+              <span class="post-meta-divider">|</span>
+            
+            <span class="post-author" >
+              
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-at"></i>
+                  <span itemprop="name">nedchu</span>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>枚举和搜索是求解问题时最基础最重要的手段，在实际的应用和算法竞赛中，枚举和搜索无处不在。算法竞赛中的许多问题常常涉及到求解最优的方案或者统计方案，这类问题多数都能使用搜索或者枚举进行求解，当然很多问题由于效率上的要求设计出了更加巧妙的算法。熟练掌握搜索枚举之后，能够简化许多问题的求解，能够更容易进行程序的对拍检验，枚举搜索也是许多算法的基础，掌握好枚举和搜索能够辅助许多重要算法的学习。</p>
+<p>枚举和搜索就类似于dp中的递推和记忆化搜索，是同一思路的不同展现形式。枚举通常来说更简短，可是思考时难度更大，需要考虑更为周全。搜索代码一般更长一些，但求解一些问题时有独到之处，也更容易编码。<br><a id="more"></a></p>
+<h2 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h2><p>枚举搜索的核心是当前的状态。状态由当前维护的关键数据所决定，包括了保存的外部数据，以及当前搜索函数的参数或者枚举时的迭代变量。外部数据主要包括了诸如某元素是否访问，当前枚举的序列，维护的标记之类的，搜索时这类比较大的数据不太适合当做参数传递。</p>
+<p>设计出来的状态决定了你需要维护哪些数据，有了状态之后还需要设计状态之间的关系，也就是枚举和搜索的策略。数据和策略决定了枚举搜索算法的运行方式，性能和正确性，需要谨慎考虑。搜索时相对容易进行一些提前结束的剪枝，如果枚举时效率不够可以考虑使用搜索。</p>
+<h2 id="全排列"><a href="#全排列" class="headerlink" title="全排列"></a>全排列</h2><p>全排列问题就是按升序输出一个序列的所有排列组合。许多问题中虽然不需要你输出排列组合，但会需要你考虑所有排列组合的情况。对于排列组合，标准库中有一系列好用的函数，最常用的是 <code>next_permutation</code>，若没有下一个排列就会返回 <code>False</code> 否则就会将传入的区间转换成下一个排列，效率是线性的，输出全排列可以使用如下代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d%c"</span>, a[i], i==n<span class="number">-1</span> ? <span class="string">'\n'</span> : <span class="string">' '</span>);</span><br><span class="line">&#125; <span class="keyword">while</span> (next_permutation(a, a + n));</span><br></pre></td></tr></table></figure></p>
+<p>使用搜索也能够完成全排列的输出，只是代码会更长。程序需要保存当前构建的元素序列 <code>a</code> 以及某个元素是否被访问过的标记数组 <code>vis</code>。程序中变量 <code>d</code> 是当前的深度，从$0$开始，当到达$n$的时候就已经安排好所有$n$个元素了，此时输出。搜索函数的意义实际是枚举所有未访问元素的全排列，递归时从小到大枚举没有被访问过的元素然后进入下一层，这里其实就是插入一个元素更新标记后，构建剩余没有访问过的元素的从小到大的全排列。由于每次枚举从小到大，先会枚举第一个元素最小的，最终输出的序列就会按照字典序的升序。注意所有外部数组当中的元素在更新之后要进行恢复。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line"><span class="keyword">bool</span> vis[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> d)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (d == n) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"%d%c"</span>, a[i] + <span class="number">1</span>, i==n<span class="number">-1</span> ? <span class="string">'\n'</span> : <span class="string">' '</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!vis[i]) &#123;</span><br><span class="line">      vis[i] = <span class="literal">true</span>;</span><br><span class="line">      a.push_back(i);</span><br><span class="line">      dfs(d + <span class="number">1</span>);</span><br><span class="line">      vis[i] = <span class="literal">false</span>;</span><br><span class="line">      a.pop_back();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">use dfs(0) to output.</span><br></pre></td></tr></table></figure></p>
+<p>如果不使用 <code>vector</code> 使用数组，就没有必要重置值了，因为当前 <code>a[0..d-1]</code> 的内容一定都是最新的，代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[N];</span><br><span class="line"><span class="keyword">bool</span> vis[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> d)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (d == n) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"%d%c"</span>, a[i] + <span class="number">1</span>, i==n<span class="number">-1</span> ? <span class="string">'\n'</span> : <span class="string">' '</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!vis[i]) &#123;</span><br><span class="line">      vis[i] = <span class="literal">true</span>;</span><br><span class="line">      a[d] = i;</span><br><span class="line">      dfs(d + <span class="number">1</span>);</span><br><span class="line">      vis[i] = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意这种利用搜索枚举全排列的方式只适用于元素不重复的情况，当列表中有元素重复的时候，就会出现构建重复序列的情况。此时我们又只能使用标准库函数了，这里介绍一下如何求一个序列的下一个排列。需要找到最长的非递增后缀，可以发现这个后缀的任何排列组合都会比这个后缀字典序小，改动是没有效果的。最长的非递增后缀前一个位置 $p$ 是一个重要的位置，因为根据定义这个位置比后一个元素小然后元素依次非递增，一定可以通过上升 $p$ 的元素构建字典序更大的序列。将后面所有的元素反转（排成正序），找到后面元素中大于 $p$ 位置最小的元素交换两者即可，此处也可以先交换再反转。代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">next_p</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;v)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> p = v.size() - <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">while</span> (p &gt;= <span class="number">0</span> &amp;&amp; v[p] &gt;= v[p+<span class="number">1</span>]) p--;</span><br><span class="line">  <span class="keyword">if</span> (p &lt;= <span class="number">-1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  reverse(v.begin() + p + <span class="number">1</span>, v.end());</span><br><span class="line">  swap(v[p], *upper_bound(v.begin() + p + <span class="number">1</span>, v.end(), v[p]));</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="所有子集"><a href="#所有子集" class="headerlink" title="所有子集"></a>所有子集</h2><p>枚举一个集合所有的子集是一个常见的需求。比如对于背包问题，如果不知道动态规划的解法，一个非常稳妥的做法就是枚举物品集合的所有子集，分别看是否符合背包容量限制，然后进行更新。为了方便起见，通常的策略是使用一个整数压缩状态，如果有 $n$ 个物品就枚举 $[0,2^n)$ 的每个数字，第 $i$ 位是$0$ 就表示不取第 $i$ 个物品，第 $i$ 位是$1$ 就表示取第 $i$ 个物品。具体实现如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> tot = <span class="number">1</span> &lt;&lt; n;</span><br><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tot; i++) &#123;</span><br><span class="line">  <span class="keyword">int</span> sum_w = <span class="number">0</span>, sum_v = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (i &gt;&gt; j &amp; <span class="number">1</span>) &#123;</span><br><span class="line">      sum_v += v[j];</span><br><span class="line">      sum_w += w[j];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (sum_w &gt;= W) ans = max(ans, sum_v);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>除了二进制枚举以外也可以直接搜索，分两种情况当前取然后枚举之后元素的子集，以及当前不取枚举之后元素的子集，容易发现这样就覆盖了所有的情况。使用搜索看上去会比枚举麻烦一些，可是在搜索的过程中，可以利用一些条件来进行剪枝，降低实际运行时的复杂度，一个简单的策略是当当前物品的重量超过背包限制时就停止搜索，其他还有很多优化手段，比如分支定界法，这里给出一个相对简单的搜索剪枝实现：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> d, <span class="keyword">int</span> sum_w)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (sum_w &gt; W) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">if</span> (d == n) &#123;</span><br><span class="line">    <span class="keyword">int</span> sum_v = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (a[j]) sum_v += v[j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (sum_w &gt;= W) ans = max(ans, sum_v);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    a[d] = <span class="literal">true</span>;</span><br><span class="line">    dfs(d + <span class="number">1</span>, sum_w + w[d]);</span><br><span class="line">    a[d] = <span class="literal">false</span>;</span><br><span class="line">    dfs(d + <span class="number">1</span>, sum_w);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="所有大小为k的子集"><a href="#所有大小为k的子集" class="headerlink" title="所有大小为k的子集"></a>所有大小为k的子集</h2><p>题意可以参照：<a href="https://vjudge.net/problem/HRBUST-2179" target="_blank" rel="noopener">https://vjudge.net/problem/HRBUST-2179</a></p>
+<p>有时会需要枚举所有大小为 $k$ 的子集，这时候并没有直接的标准库函数可以使用，一种取巧的方式是利用 <code>next_permutation</code> 函数来做。其中 $k$ 元素为 $1$ 剩余 $n-k$个元素为 $0$ 然后求数组的全排列，如果第 $i$ 个数为 $1$ 就输出这个数字，具体代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++) a.push_back(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - k; i++) a.push_back(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">  <span class="keyword">int</span> rem = k;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!a[i]) <span class="built_in">printf</span>(<span class="string">"%d%c"</span>, i + <span class="number">1</span>, --rem == <span class="number">0</span> ? <span class="string">'\n'</span> : <span class="string">' '</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">while</span> (next_permutation(a.begin(), a.end()));</span><br></pre></td></tr></table></figure></p>
+<p>如果使用搜索，需要升序枚举所有 $k$ 个元素，可以多加一个变量维护集合中的最大元素或者说从哪里开始枚举一下一个元素。于是从起点开始枚举，最终构建完成所有 $k$ 个元素就要输出，已经考虑完所有 $n$ 个元素就要返回。边界上需要仔细注意，如果传参传入的是当前位置，调用时从那个位置加一开始，那么传参的时候就要传入 $-1$，要保持一致性，如果传入当前位置加一就没有问题了，直接传入 $0$ 即可。代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> d, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (d == k) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"%d%c"</span>, a[i] + <span class="number">1</span>, i==k<span class="number">-1</span> ? <span class="string">'\n'</span> : <span class="string">' '</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (x == n) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = x; i &lt; n; i++) &#123;</span><br><span class="line">    a[d] = i;</span><br><span class="line">    dfs(d + <span class="number">1</span>, i + <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="推荐习题"><a href="#推荐习题" class="headerlink" title="推荐习题"></a>推荐习题</h2><ul>
+<li>HDU 1027</li>
+<li>HDU 5616</li>
+<li>POJ 2718</li>
+<li>HRBUST 2179</li>
+<li>CF 617C</li>
+<li>POJ 3421</li>
+<li>HDU 1016</li>
+<li>HDU 4403</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/sng-wiki/tags/dfs/" rel="tag"># dfs</a>
+          
+            <a href="/sng-wiki/tags/枚举/" rel="tag"># 枚举</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/sng-wiki/2018/09/08/dp/" rel="next" title="动态规划基础">
+                <i class="fa fa-chevron-left"></i> 动态规划基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/sng-wiki/2018/10/12/number-theory/" rel="prev" title="数论">
+                数论 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">NOIP竞赛班教练组</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/sng-wiki/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/sng-wiki/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/sng-wiki/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态"><span class="nav-number">2.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全排列"><span class="nav-number">3.</span> <span class="nav-text">全排列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有子集"><span class="nav-number">4.</span> <span class="nav-text">所有子集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有大小为k的子集"><span class="nav-number">5.</span> <span class="nav-text">所有大小为k的子集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐习题"><span class="nav-number">6.</span> <span class="nav-text">推荐习题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NOIP竞赛班教练组</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/sng-wiki/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/sng-wiki/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/sng-wiki/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/sng-wiki/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/sng-wiki/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/sng-wiki/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/sng-wiki/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

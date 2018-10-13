@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/sng-wiki/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/sng-wiki/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/sng-wiki/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/sng-wiki/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/sng-wiki/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/sng-wiki/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/sng-wiki/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="dp," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简介动态规划(Dynamic Programming or DP)是运筹学的一个分支，用于解决一些最优决策的问题。在程序设计竞赛和公司面试中动态规划都是十分重要的知识点，主要原因在于动态规划思维灵活多变，形式多样，容易和各类知识结合。程序设计竞赛中，动态规划题目出现比较频繁，解法常常不止一种，能出简单的题也能出很难的（难题中一般是解法的一部分），是从入门开始就要修炼的技能。通过动态规划的训练，能够">
+<meta name="keywords" content="dp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划基础">
+<meta property="og:url" content="https://nedchu.github.io/2018/09/08/dp/index.html">
+<meta property="og:site_name" content="少年宫NOIP竞赛班维基">
+<meta property="og:description" content="简介动态规划(Dynamic Programming or DP)是运筹学的一个分支，用于解决一些最优决策的问题。在程序设计竞赛和公司面试中动态规划都是十分重要的知识点，主要原因在于动态规划思维灵活多变，形式多样，容易和各类知识结合。程序设计竞赛中，动态规划题目出现比较频繁，解法常常不止一种，能出简单的题也能出很难的（难题中一般是解法的一部分），是从入门开始就要修炼的技能。通过动态规划的训练，能够">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-30T06:08:50.976Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="动态规划基础">
+<meta name="twitter:description" content="简介动态规划(Dynamic Programming or DP)是运筹学的一个分支，用于解决一些最优决策的问题。在程序设计竞赛和公司面试中动态规划都是十分重要的知识点，主要原因在于动态规划思维灵活多变，形式多样，容易和各类知识结合。程序设计竞赛中，动态规划题目出现比较频繁，解法常常不止一种，能出简单的题也能出很难的（难题中一般是解法的一部分），是从入门开始就要修炼的技能。通过动态规划的训练，能够">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/sng-wiki/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nedchu.github.io/2018/09/08/dp/"/>
+
+
+
+
+
+  <title>动态规划基础 | 少年宫NOIP竞赛班维基</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/sng-wiki/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">少年宫NOIP竞赛班维基</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/sng-wiki/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/sng-wiki/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/sng-wiki/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/sng-wiki/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nedchu.github.io/sng-wiki/2018/09/08/dp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="NOIP竞赛班教练组">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/sng-wiki/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="少年宫NOIP竞赛班维基">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">动态规划基础</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-08T20:26:46+08:00">
+                2018-09-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/sng-wiki/categories/教程/" itemprop="url" rel="index">
+                    <span itemprop="name">教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+          
+            
+              <span class="post-meta-divider">|</span>
+            
+            <span class="post-author" >
+              
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-at"></i>
+                  <span itemprop="name">nedchu</span>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>动态规划(Dynamic Programming or DP)是运筹学的一个分支，用于解决一些最优决策的问题。在程序设计竞赛和公司面试中动态规划都是十分重要的知识点，主要原因在于动态规划思维灵活多变，形式多样，容易和各类知识结合。程序设计竞赛中，动态规划题目出现比较频繁，解法常常不止一种，能出简单的题也能出很难的（难题中一般是解法的一部分），是从入门开始就要修炼的技能。通过动态规划的训练，能够更加熟练地运用递归思想，接近算法思维的核心。由于有递归思想在其中，很多同学在刚接触dp时会觉得摸不到头脑，感觉是玄学，在经过深入的训练之后，就能更熟练地掌握dp了，跟其他算法比起来，dp属于最为需要实战训练的算法，通过学习各种dp模型才能够好地掌握dp。<br><a id="more"></a></p>
+<h2 id="什么是dp"><a href="#什么是dp" class="headerlink" title="什么是dp"></a>什么是dp</h2><h3 id="基本性质"><a href="#基本性质" class="headerlink" title="基本性质"></a>基本性质</h3><p>dp其实跟动态没啥关系，本质上是一种<strong>记录结果重用</strong>的技术，我常称dp为暴力，其实dp的确是一种比较优雅精巧的暴力，<strong>拿空间换取时间</strong>。</p>
+<p>dp的问题主要有以下性质：</p>
+<ul>
+<li>最优子结构：一个问题的最优解能够使用其他相似的问题的最优解得到。</li>
+<li>重叠子问题：一个问题会被计算多次。</li>
+<li><p>无后效性：某阶段的状态一旦确定，则此后过程的演变不再受此前各种状态及决策的影响。</p>
+<h3 id="性质举例"><a href="#性质举例" class="headerlink" title="性质举例"></a>性质举例</h3><p>以下的例子虽然不算是dp，但是可以展示出dp大致是什么。主要以斐波那契数列$Fib_i=Fib_{i-1}+Fib_{i-2}(i&gt;1,Fib_0=Fib_1=1)$的求解为例子。</p>
+</li>
+<li><p>最优子结构：一个问题的最优解能够使用其他相似的问题的最优解得到。比如对于斐波那契数列，$Fib_i,Fib_{i-1},Fib_{i-2}$分别对应了参数为$i, i-1,i-2$的斐波那契数列求解问题，这三个问题参数不同却是在解决同一个问题，所以是相似的问题。而我们能够通过后两个问题的结果直接加和获得第一个问题的结果，也就能用相似问题的解获得该问题的最优解了。</p>
+</li>
+<li><p>重叠子问题：一个问题会被计算多次。比如递归展开后$Fib_{i-2}$会在$Fib_i,Fib_{i-1}$中被计算，那么如果能把$Fib_{i-2}$的结果保留下来，就能在计算中直接使用结果，从而加速计算，这点是动态规划与分治算法的主要区别，分治中不存在重叠的子问题</p>
+</li>
+<li><p>无后效性：某阶段的状态一旦确定，则此后过程的演变不再受此前各种状态及决策的影响。对斐波那契数列来说，就是对于一个固定的$i$来说$Fib_i$是不变的，只需要求解一次。我觉得更形象的理解是解之间的依赖关系形成了一张有向无环图，能根据拓扑序来求解，当然这种理解需要了解一些图论的知识。有后效性的一个例子就是一个棋盘上有个棋子四个方向等概率走，从某个位置开始，求第一次到某个位置的期望步数，容易发现到某位置的期望是到周围四个位置的期望的平均值，可以发现这个例子中一个位置的期望展开后会依赖到它自己，会不断更新，不满足无后效性的条件。</p>
+</li>
+</ul>
+<p>总的来说最优子结构保证了问题能够得到求解，重叠子问题是重复利用结果也是加速的基础，无后效性保证了结果只需要求一次，于是按照特定的顺序（解依赖的拓扑序），我们能够通过之前记录的结果求出逐个求出所有问题的解。</p>
+<h2 id="dp的两种形式"><a href="#dp的两种形式" class="headerlink" title="dp的两种形式"></a>dp的两种形式</h2><p>动态规划主要基于递归的思想，而展现的形式主要有两种，分别是递推和记忆化搜索，这两种方法各有各的特点，也能够相互之间转化，需要根据题目的具体特性选择合适的方法来进行求解。</p>
+<p>第一种方式是递推，一般是根据循环直接获得结果，需要注意计算的顺序必须要满足解之间的依赖，即被依赖的解要先计算。对于斐波那契数列来说，递推的形式如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">f[<span class="number">0</span>] = f[<span class="number">1</span>] = <span class="number">1</span>; <span class="comment">// 1. 边界条件</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; n; i++) &#123;</span><br><span class="line">  f[i] = f[i<span class="number">-1</span>] + f[i<span class="number">-2</span>]; <span class="comment">// 2. 递推关系</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第二种方式是记忆化搜索，一般通过搜索的方式获得结果，求解的步骤是首先将数组中的值标记为不可能的值(-1,0x3f3f3f3f之类的)，搜索时若记录的数组中对应的值是不可能的值就求解该问题，并将结果记录在数组中，若对应的值是可能的值说明已经计算过该值，可以直接返回结果。记忆化搜索相对来说流程比较复杂，例子和流程如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (f[x] != <span class="number">-1</span>) <span class="keyword">return</span> f[x]; <span class="comment">// 2. 若不是不可能的值，说明已经计算过，直接返回，保证空间中的每个值只会被计算一次</span></span><br><span class="line">  <span class="keyword">if</span> (x &lt;= <span class="number">1</span>) <span class="keyword">return</span> f[x] = <span class="number">1</span>; <span class="comment">// 3. 边界条件也可以在搜索过程中直接给出</span></span><br><span class="line">  <span class="keyword">return</span> f[x] = dfs(x<span class="number">-1</span>) + dfs(x<span class="number">-2</span>); <span class="comment">// 4. 求解问题并进行记录，注意要调用函数而非取数组的值</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">memset</span>(f, <span class="number">-1</span>, <span class="keyword">sizeof</span> f); <span class="comment">// 1. 初始化记录数组为不可能的值</span></span><br><span class="line">  f[<span class="number">0</span>] = f[<span class="number">1</span>] = <span class="number">1</span>; <span class="comment">// 3. 边界条件可以在初始化后直接给出</span></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, dfs(<span class="number">10</span>)); <span class="comment">// 5. 调用</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>从时空复杂度来说两者并没有差别，但各自有不同的特点。递推代表了自底向上，记忆化搜索代表了自顶向下。递推比较适合依赖关系简单的问题，写起来比较简洁，当依赖复杂时容易出错。记忆化搜索写起来长一些，调用程序栈也会有一些花销，好处是不用关注依赖关系，直接调用函数即可。</p>
+<h2 id="dp的复杂度"><a href="#dp的复杂度" class="headerlink" title="dp的复杂度"></a>dp的复杂度</h2><p>dp的空间复杂度和解状态的空间有关了。</p>
+<p>dp的时间复杂度与两个变量相关，首先是空间复杂度，因为每个值会被计算一次，其次就是每个值利用已有的解进行构建的复杂度，注意此处只考虑构建的复杂度，已有解的计算复杂度不必考虑。由于每个值的计算就是通过已有解来构建，而且每个值只计算一次，所以最终的复杂度就是两者的乘积。</p>
+<p>dp的时空复杂度相对来说容易计算，许多问题灵活多变，会有多种时空复杂的解法。在时空复杂度不符合题目需求时，需要考虑改变状态的意义，合理进行剪枝或者使用堆，线段树，树状数组，平衡树等高效数据结构进行优化。</p>
+<h2 id="dp与分治和贪心"><a href="#dp与分治和贪心" class="headerlink" title="dp与分治和贪心"></a>dp与分治和贪心</h2><p>解决最优化问题的手段很多，除了dp以外，分治和贪心也是其中非常重要的手段，本节主要讨论他们之间的异同。</p>
+<p>常见的分治算法有：二分，快速排序，归并排序，FFT，最近点对，线段树等等。分治的核心思想是分而治之，将问题划分成若干个不相交的类似子问题，解决他们之后，再将结果不断合并。dp和分治的最大不同点在于：dp中问题的求解之间有重叠，结果被保存下来，多次重复使用，而分治之中问题的结果通常不用保存，因为所有求解的问题之间是没有重叠的，比如我们不会在排序时对某个区间排序两次。分治和dp都运用了递归的思想，利用类似的问题的结果获得目标的结果，核心思想非常接近。</p>
+<p>常见的贪心算法有：哈弗曼编码，Kruskal等等。贪心非常常见，因为它简单高效，实质上贪心就是只考虑当下一步步获得最优解。dp和贪心的不同在于：dp考虑的是多种决策方式下的最优，而贪心的决策方式是唯一的。贪心的构造方式是一条链，而dp是一张更为复杂的图。dp可以看做是一种更高层次的，考虑更周全的贪心，以多种决策的最优解来贪心构造。</p>
+<h2 id="0-1背包问题"><a href="#0-1背包问题" class="headerlink" title="0-1背包问题"></a>0-1背包问题</h2><p>背包问题是动态规划最为基础的模型。有一个能容纳重量 $W$ 的背包，有 $n$ 种物品每种只有一个，要么取要么不取，第 $i$ 个物品的重量和价值为 $w_i,v_i$，希望找到一个方案，在背包内容纳价值之和尽量高的物品。</p>
+<p>容易想到可以$O(2^n\cdot n)$枚举所有方案取最大值，以及搜索时候进行巧妙简直，这类方案复杂度过高，只能处理规模很小的数据。另外一种常见的思路是尝试利用贪心解决问题，为了举一个简单的反例，此处首先简化问题为重量和价值相同，问题变为在背包里容纳尽量重的物品，若背包大小为$6$，物品重量分别为$5~3~3$，贪心先取出大的就会出现问题。</p>
+<p>使用dp解决背包时，第一维代表使用前$i$种物品，第二维是重量，$dp[i][j]$是使用前$i$种物品总重量为$j$时的最大价值。想要获取$dp[i+1][j]$，在考虑一个新物品时有两种决策方式，如果最新的物品不取，则需要求得使用前$i$个物品总重量为$j$时的最大值，即$dp[i][j]$，如果最新的物品取用，总重量需要占去一部分，剩余$j-w[i]$空间需要用前$i$种物品获得尽量大的价值，这部分价值还需要加上最新物品的价值，决策的结果为$dp[i][j - w[i]] + v[i]$，整理之后可以获得如下代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="keyword">sizeof</span> dp);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= W; j++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (j &lt; w[i]) &#123;</span><br><span class="line">      dp[i + <span class="number">1</span>][j] = dp[i][j];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      dp[i + <span class="number">1</span>][j] = max(dp[i][j], dp[i][j - w[i]] + v[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">dp[n][W] is answer.</span><br></pre></td></tr></table></figure></p>
+<p>一个常见的优化是将数组变化为一维，意义为重量，第二层遍历时反向遍历，这么做以后所有当前的$j$以后的值都是本轮更新过的，而之前的值都是上一轮的结果，没有更新过的是$dp[i][\cdot]$更新过的是$dp[i+1][\cdot]$，由于一般保证重量是正数，更新使用的状态恰好符合了简化前的要求，简化后代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="keyword">sizeof</span> dp);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> j = W; j &gt;= w[i]; j--) &#123;</span><br><span class="line">    dp[j] = max(dp[j], dp[j - w[i]] + v[i]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>容易发现以上算法的复杂度为$O(nW)$，相比枚举算法的$O(2^n\cdot n)$有了极大的改进，而代码反而更短，这也正是dp的魅力和威力所在。0-1背包问题是最基础的动态规划问题，由于物品只有一个取就是1不取就是0，所以被称为0-1背包。除此之外还有很多背包问题变种比如完全背包和多重背包，此处不再过多展开，有兴趣的同学可以进一步查阅一份网上的教程叫做《背包九讲》。</p>
+<h2 id="0-1背包条件的变化"><a href="#0-1背包条件的变化" class="headerlink" title="0-1背包条件的变化"></a>0-1背包条件的变化</h2><p>上一节的基础0-1背包算法中，算法的时空复杂度为$O(nW)$，这里其实我们假定了问题中个数和背包的容量不是非常大，可并不是所有问题满足这样的条件。假定有一道问题中，个数和价值不是非常大，而背包容量很大，莫非dp就没用了嘛？实际此时我们只需要重新构建新的dp意义就能再次利用dp解决这个问题了。</p>
+<p>新的dp意义中，第一维代表使用前$i$种物品，第二维是总价值，$dp[i][j]$是使用前$i$种物品总价值为$j$时的最小重量。想要获取$dp[i+1][j]$，在考虑一个新物品时有两种决策方式，如果最新的物品不取，则需要求得使用前$i$种物品总价值为$j$时的最小重量，即$dp[i][j]$，如果最新的物品取用，总价值已经满足了一部分，剩余$j-v[i]$价值需要用前$i$种物品以尽量小的重量满足，这部分重量还需要加上最新物品的重量，决策的结果为$dp[i][j - v[i]] + w[i]$，取用两种决策的最小值。</p>
+<p>和上一个算法不同，此次要求的是最小值，因而初始化整个数组为很大的整数，初始条件是价值为0时最小重量为0，最终若$dp[n][i]\leq W$则对应的$i$价值能够用容量为$W$的背包达到，令$V=\sum v_i$，则算法复杂度变为$O(nV)$，将代码做了压缩的优化后如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="built_in">memset</span>(dp, INF, <span class="keyword">sizeof</span> dp);</span><br><span class="line">dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> j = V; j &gt;= v[i]; j--) &#123;</span><br><span class="line">    dp[j] = min(dp[j], dp[j - v[i]] + w[i]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= V; i++) &#123;</span><br><span class="line">  <span class="keyword">if</span> (dp[i] &lt;= W) ans = i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="dp的回溯"><a href="#dp的回溯" class="headerlink" title="dp的回溯"></a>dp的回溯</h2><p>dp中有部分问题需要输出最优解的构成，比如输出最短路的路径或者输出最优方案。上述操作我们称之为回溯，完成回溯需要在dp过程中加入额外的代码。通常来说可以储存状态转移的来源，开辟一个和状态结构相同的空间，在发现更优结果更新dp值的同时更新来源。在0-1背包问题中，若要进行回溯就不能进行数组压缩，具体原因可以自行尝试并考虑。</p>
+<p>由于值都是从上一行转移过来的，只需要记录第二维的信息。当不取用物品时，来源就是上一维的$j$，若取物品则来源是上一维的$j-w[i]$，在决策的同时根据决策更新来源值。如此一来，当$j\neq bk[i][j]$时就知道决策至该状态时选择了加入物品，状态是从$dp[i-1][bk[i][j]]$更新而来，利用一个值不断迭代重量即可。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= W; j++) &#123;</span><br><span class="line">    dp[i + <span class="number">1</span>][j] = dp[i][j];</span><br><span class="line">    bk[i + <span class="number">1</span>][j] = j;</span><br><span class="line">    <span class="keyword">if</span> (j &gt;= w[i] &amp;&amp; dp[i][j - w[i]] + v[i] &gt; dp[i + <span class="number">1</span>][j]) &#123;</span><br><span class="line">      bk[i + <span class="number">1</span>][j] = j - w[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line"><span class="keyword">int</span> cur = W;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = n; i &gt;= <span class="number">1</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">if</span> (cur != bk[i][cur]) res.push_back(i<span class="number">-1</span>);</span><br><span class="line">  cur = bk[i][cur];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="dp常见模型"><a href="#dp常见模型" class="headerlink" title="dp常见模型"></a>dp常见模型</h2><ol>
+<li>完全背包，多重背包，都是基于0-1背包拓展的问题，具体可以查看经典教程《背包九讲》</li>
+<li>最长公共子序列(Longest Common Subsequence)</li>
+<li>最长上升子序列(Longest Increasing Subsequence)，有简单的 $O(n^2)$ 解法和更快的 $O(n\log n)$ 解法</li>
+<li>最长子段和，有分治的 $O(n\log n)$ 解法和dp的线性解法，这个算法能够进一步去求解最大子矩阵问题</li>
+<li>区间上的问题，常见的有回文切割及回文相关的问题</li>
+</ol>
+<p>dp的模型灵活多变，一个问题也可以有多种解决方案，这里只列举了一些比较常见和简单的模型，不进行详细的展开，如有机会将再写文章专门讨论。相关的题目会附在之后的习题推荐中。</p>
+<h2 id="习题推荐"><a href="#习题推荐" class="headerlink" title="习题推荐"></a>习题推荐</h2><ul>
+<li>hdu 2602 0-1背包</li>
+<li>hdu 1159 LCS</li>
+<li>open 2533 LIS</li>
+<li>poj 3280 回文</li>
+<li>hdu 1003 最大子段和</li>
+<li>URAL 1078 回溯</li>
+<li>hdu 1025 LIS</li>
+<li>51nod 1051 最大子矩阵</li>
+<li>cf 1025D</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/sng-wiki/tags/dp/" rel="tag"># dp</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/sng-wiki/2017/12/09/2017-12-9-sol/" rel="next" title="2017.12.9 定段赛第二场 题解">
+                <i class="fa fa-chevron-left"></i> 2017.12.9 定段赛第二场 题解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/sng-wiki/2018/09/15/dfs/" rel="prev" title="枚举搜索">
+                枚举搜索 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">NOIP竞赛班教练组</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/sng-wiki/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/sng-wiki/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/sng-wiki/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是dp"><span class="nav-number">2.</span> <span class="nav-text">什么是dp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本性质"><span class="nav-number">2.1.</span> <span class="nav-text">基本性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性质举例"><span class="nav-number">2.2.</span> <span class="nav-text">性质举例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dp的两种形式"><span class="nav-number">3.</span> <span class="nav-text">dp的两种形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dp的复杂度"><span class="nav-number">4.</span> <span class="nav-text">dp的复杂度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dp与分治和贪心"><span class="nav-number">5.</span> <span class="nav-text">dp与分治和贪心</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-1背包问题"><span class="nav-number">6.</span> <span class="nav-text">0-1背包问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-1背包条件的变化"><span class="nav-number">7.</span> <span class="nav-text">0-1背包条件的变化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dp的回溯"><span class="nav-number">8.</span> <span class="nav-text">dp的回溯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dp常见模型"><span class="nav-number">9.</span> <span class="nav-text">dp常见模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#习题推荐"><span class="nav-number">10.</span> <span class="nav-text">习题推荐</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NOIP竞赛班教练组</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/sng-wiki/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/sng-wiki/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/sng-wiki/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/sng-wiki/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/sng-wiki/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/sng-wiki/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/sng-wiki/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

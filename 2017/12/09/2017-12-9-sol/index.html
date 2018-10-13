@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/sng-wiki/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/sng-wiki/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/sng-wiki/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/sng-wiki/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/sng-wiki/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/sng-wiki/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/sng-wiki/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="2017.12.9 定段赛第二场 15:30分场 2017.12.9 定段赛第二场 15:30分场">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2017.12.9 定段赛第二场 题解">
+<meta property="og:url" content="https://nedchu.github.io/2017/12/09/2017-12-9-sol/index.html">
+<meta property="og:site_name" content="少年宫NOIP竞赛班维基">
+<meta property="og:description" content="2017.12.9 定段赛第二场 15:30分场 2017.12.9 定段赛第二场 15:30分场">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-30T06:08:50.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2017.12.9 定段赛第二场 题解">
+<meta name="twitter:description" content="2017.12.9 定段赛第二场 15:30分场 2017.12.9 定段赛第二场 15:30分场">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/sng-wiki/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nedchu.github.io/2017/12/09/2017-12-9-sol/"/>
+
+
+
+
+
+  <title>2017.12.9 定段赛第二场 题解 | 少年宫NOIP竞赛班维基</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/sng-wiki/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">少年宫NOIP竞赛班维基</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/sng-wiki/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/sng-wiki/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/sng-wiki/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/sng-wiki/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nedchu.github.io/sng-wiki/2017/12/09/2017-12-9-sol/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="NOIP竞赛班教练组">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/sng-wiki/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="少年宫NOIP竞赛班维基">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2017.12.9 定段赛第二场 题解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T16:18:11+08:00">
+                2017-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/sng-wiki/categories/题解/" itemprop="url" rel="index">
+                    <span itemprop="name">题解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+          
+            
+              <span class="post-meta-divider">|</span>
+            
+            <span class="post-author" >
+              
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-at"></i>
+                  <span itemprop="name">伟大的蚊子</span>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://vjudge.net/contest/203550#rank" target="_blank" rel="noopener">2017.12.9 定段赛第二场 15:30分场</a></p>
+<p><a href="https://vjudge.net/contest/203551" target="_blank" rel="noopener">2017.12.9 定段赛第二场 15:30分场</a><br><a id="more"></a></p>
+<h2 id="Problem-A"><a href="#Problem-A" class="headerlink" title="Problem A"></a>Problem A</h2><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2014" target="_blank" rel="noopener">hdu2014</a></p>
+<p>去掉Min和Max求avg</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n) == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> x, Max=<span class="number">0</span>, Min=<span class="number">999</span>;</span><br><span class="line">        <span class="keyword">double</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;x);</span><br><span class="line">            sum += x;</span><br><span class="line">            Max = max(Max, x);</span><br><span class="line">            Min = min(Min, x);</span><br><span class="line">        &#125;</span><br><span class="line">        sum -= Max + Min;</span><br><span class="line">        sum /= n - <span class="number">2</span>;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%.2lf\n"</span>,sum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Problem-B"><a href="#Problem-B" class="headerlink" title="Problem B"></a>Problem B</h2><p><a href="https://hihocoder.com/problemset/problem/1623" target="_blank" rel="noopener">hihocoder1623</a></p>
+<p>题意：一个数字（号码牌），倒过来可能是另一个数字，问正着倒着是否会产生歧义</p>
+<p>const 每个数字可能产生的“歧义数字”, 然后看倒过来是什么即可</p>
+<p>代码有点丑，见谅</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="built_in">map</span> &lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这个map用来记录每个数字倒过来是什么数字</span></span><br><span class="line"><span class="comment">// 如果倒过来不是一个数字，就不在</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">initmp</span><span class="params">()</span></span>&#123;</span><br><span class="line">    mp[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    mp[<span class="number">2</span>] = <span class="number">2</span>;</span><br><span class="line">    mp[<span class="number">5</span>] = <span class="number">5</span>;</span><br><span class="line">    mp[<span class="number">6</span>] = <span class="number">9</span>;</span><br><span class="line">    mp[<span class="number">8</span>] = <span class="number">8</span>;</span><br><span class="line">    mp[<span class="number">9</span>] = <span class="number">6</span>;</span><br><span class="line">    mp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">wtf</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">1</span>, cnt = <span class="number">1</span>, ans = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 依次处理1..n的所有号码看看是否有歧义</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(i == x * <span class="number">10</span>) cnt++, x = i;</span><br><span class="line">        <span class="keyword">int</span> p = i, tmp = <span class="number">0</span>;  <span class="comment">// tmp为i倒过来后的号码</span></span><br><span class="line">        <span class="keyword">bool</span> ok = <span class="literal">true</span>;  <span class="comment">// 这个bool用来标记是否有mp种没有的数字</span></span><br><span class="line">        <span class="comment">// 如果有，则说明不可能有歧义</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 这个循环用来搞出i倒过来的数字</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cnt; j++, p /= <span class="number">10</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (mp.find(p%<span class="number">10</span>) == mp.end()) &#123;</span><br><span class="line">                ok = <span class="literal">false</span>; <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            tmp = (tmp*<span class="number">10</span> + mp[p % <span class="number">10</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 将有歧义的号码输出</span></span><br><span class="line">        <span class="keyword">if</span> (tmp&lt;=n &amp;&amp; ok &amp;&amp; tmp!=i &amp;&amp; (i%<span class="number">10</span>)&gt;<span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    initmp();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> n; <span class="built_in">cin</span> &gt;&gt; n;) &#123;</span><br><span class="line">        wtf(n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Problem-C"><a href="#Problem-C" class="headerlink" title="Problem C"></a>Problem C</h2><p><a href="https://hihocoder.com/problemset/problem/1361" target="_blank" rel="noopener">hihocoder1361</a></p>
+<p>百度百科凯撒密码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen("fuck.in","r",stdin);</span></span><br><span class="line">    <span class="built_in">string</span> st;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;st;</span><br><span class="line">    <span class="keyword">int</span> len = st.length();</span><br><span class="line">    <span class="keyword">bool</span> vis[<span class="number">200</span>];</span><br><span class="line">    <span class="built_in">memset</span>(vis,<span class="number">0</span>,<span class="keyword">sizeof</span>(vis));</span><br><span class="line">    <span class="keyword">char</span> a[<span class="number">30</span>];</span><br><span class="line">    <span class="keyword">int</span> pos = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 将单词预处理</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span> (st[i] == <span class="string">'J'</span>) st[i]=<span class="string">'I'</span>;  <span class="comment">// 读题，注意本题没有J字母</span></span><br><span class="line">        <span class="keyword">if</span> (vis[st[i]]) <span class="keyword">continue</span>;  <span class="comment">// 每个字母只有一次</span></span><br><span class="line">        vis[st[i]] = <span class="number">1</span>;  </span><br><span class="line">        a[pos++] = st[i];  <span class="comment">// 将不重复的字母打出</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将单词中未出现的字母依次填入</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> i=<span class="string">'A'</span>;i&lt;=<span class="string">'Z'</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span> (vis[i]||i==<span class="string">'J'</span>)<span class="keyword">continue</span>;</span><br><span class="line">        a[pos++] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 输出答案，分行</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">25</span>;i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%c"</span>,a[i]);</span><br><span class="line">        <span class="keyword">if</span> (i%<span class="number">5</span>==<span class="number">4</span>)<span class="built_in">puts</span>(<span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Problem-D"><a href="#Problem-D" class="headerlink" title="Problem D"></a>Problem D</h2><p><a href="http://hihocoder.com/problemset/problem/1362" target="_blank" rel="noopener">hiho1362</a></p>
+<p>二分最矮的木桶高度h，也就说高度小于h的需要修一次，</p>
+<p>当然木桶是圆的，维修起点不确定，我们可以枚举 [○・`Д´・○]</p>
+<p>然后统计修了多少次</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,len,a[N],b[N];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以start为起点，修木桶</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">repair</span><span class="params">(<span class="keyword">int</span> start,<span class="keyword">int</span> h)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 维修n的长度</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt;= start+n; i++) <span class="keyword">if</span> (b[i]&lt;h) &#123;</span><br><span class="line">        i += len<span class="number">-1</span>; <span class="comment">// 维修len长度</span></span><br><span class="line">        cnt++; <span class="comment">// cnt为维修次数</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cnt &lt;= m; <span class="comment">// (。・`ω´・)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查是否可以修到h高度</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> h)</span></span>&#123;</span><br><span class="line">    <span class="comment">// 复制一个木桶，下次check可能还需要用这个桶</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n+len; i++) b[i] = a[i];</span><br><span class="line">    <span class="comment">// 因为木桶是一个环，所以它的起点是任意的</span></span><br><span class="line">    <span class="comment">// 既然是任意的，那么枚举起点，</span></span><br><span class="line">    <span class="comment">//任意起点维修成功则说明可以修到h高度</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= len; i++)</span><br><span class="line">        <span class="keyword">if</span> (repair(i, h)) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen("fuck.in","r",stdin);</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;n, &amp;m, &amp;len);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);&#125;</span><br><span class="line">    <span class="comment">// 对于一个环的处理，复制一遍</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n+<span class="number">1</span>; i &lt;= n+len; i++) a[i] = a[i-n];</span><br><span class="line">    <span class="comment">// 二分修到的高度</span></span><br><span class="line">    <span class="keyword">int</span> L = <span class="number">0</span>, R = INF, ans;</span><br><span class="line">    <span class="keyword">for</span> (; L &lt;= R;)&#123;</span><br><span class="line">        <span class="keyword">int</span> mid=(L+R)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (check(mid))&#123;</span><br><span class="line">            L = mid + <span class="number">1</span>;</span><br><span class="line">            ans = mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> R = mid - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Problem-E"><a href="#Problem-E" class="headerlink" title="Problem E"></a>Problem E</h2><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6113" target="_blank" rel="noopener">hdu6113</a></p>
+<p>手写数字识别</p>
+<p>题意： 给矩阵判断手写数字是0还是1</p>
+<p>sol: 周围加一圈0，统计0的连通块数量，注意-1</p>
+<p>题目大部分都是废话，主要是看0和1的定义，仔细读定义，</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">222</span>;</span><br><span class="line"><span class="keyword">char</span> maze[N][N];</span><br><span class="line"><span class="keyword">int</span> dx[<span class="number">4</span>] = &#123; <span class="number">1</span>, <span class="number">-1</span>, <span class="number">0</span>,  <span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> dy[<span class="number">4</span>] = &#123; <span class="number">0</span>,  <span class="number">0</span>, <span class="number">1</span>, <span class="number">-1</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"></span><br><span class="line"><span class="comment">// dfs搜索联通块</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">char</span> c)</span></span>&#123;</span><br><span class="line">    maze[x][y] = <span class="string">'2'</span>;  <span class="comment">// 标记</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">4</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> xx = x + dx[i];</span><br><span class="line">        <span class="keyword">int</span> yy = y + dy[i];</span><br><span class="line">        <span class="comment">// 超出边界或者已经出现过了</span></span><br><span class="line">        <span class="keyword">if</span>(xx &lt; <span class="number">0</span> || xx &gt; m || yy &lt; <span class="number">0</span> || yy &gt; n || maze[xx][yy] != c) <span class="keyword">continue</span>;</span><br><span class="line">        dfs(xx, yy, c);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%d%d\n"</span>, &amp;m, &amp;n))&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n;j++)&#123;</span><br><span class="line">                <span class="built_in">scanf</span>(<span class="string">"%c"</span>, &amp;maze[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">            getchar();</span><br><span class="line">        &#125;</span><br><span class="line">        m++, n++;</span><br><span class="line">        <span class="comment">// 在图外面加一圈0，</span></span><br><span class="line">        <span class="comment">// 因为原来图的1可能会顶格</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= n; j++) &#123;</span><br><span class="line">            maze[m][j] = <span class="string">'0'</span>;</span><br><span class="line">            maze[<span class="number">0</span>][j] = <span class="string">'0'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= m; i++) &#123;</span><br><span class="line">            maze[i][n] = <span class="string">'0'</span>;</span><br><span class="line">            maze[i][<span class="number">0</span>] = <span class="string">'0'</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 统计联通块的数量</span></span><br><span class="line">        <span class="comment">// cnt0表示有多少块由0组成的区域, 1同理</span></span><br><span class="line">        <span class="keyword">int</span> cnt0 = <span class="number">0</span>, cnt1 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= m; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= n; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(maze[i][j] == <span class="string">'0'</span>)&#123;</span><br><span class="line">                    cnt0++;</span><br><span class="line">                    dfs(i, j, <span class="string">'0'</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span>(maze[i][j] == <span class="string">'1'</span>)&#123;</span><br><span class="line">                    cnt1++;</span><br><span class="line">                    dfs(i, j, <span class="string">'1'</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// _(:3 」∠)_ </span></span><br><span class="line">        <span class="keyword">if</span>(cnt0 == <span class="number">2</span> &amp;&amp; cnt1 == <span class="number">1</span>) <span class="built_in">printf</span>(<span class="string">"0\n"</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(cnt0 == <span class="number">1</span> &amp;&amp; cnt1 == <span class="number">1</span>) <span class="built_in">printf</span>(<span class="string">"1\n"</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"-1\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/sng-wiki/2017/12/02/2017-12-2-sol/" rel="next" title="2017.12.2 定段赛第一场 题解">
+                <i class="fa fa-chevron-left"></i> 2017.12.2 定段赛第一场 题解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/sng-wiki/2018/09/08/dp/" rel="prev" title="动态规划基础">
+                动态规划基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">NOIP竞赛班教练组</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/sng-wiki/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/sng-wiki/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/sng-wiki/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-A"><span class="nav-number">1.</span> <span class="nav-text">Problem A</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-B"><span class="nav-number">2.</span> <span class="nav-text">Problem B</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-C"><span class="nav-number">3.</span> <span class="nav-text">Problem C</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-D"><span class="nav-number">4.</span> <span class="nav-text">Problem D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-E"><span class="nav-number">5.</span> <span class="nav-text">Problem E</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NOIP竞赛班教练组</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/sng-wiki/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/sng-wiki/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/sng-wiki/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/sng-wiki/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/sng-wiki/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/sng-wiki/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/sng-wiki/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/sng-wiki/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
