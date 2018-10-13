@@ -26,9 +26,10 @@ h4 {
   font-size: 18px;
 }
 
-.katex {
-  margin: 0 5px;
+.MathJax {
+  padding: 0 0.3em;
 }
+/*
 :not(pre)>code {
   font-size: 18px;
   font-family: Consolas,monospace,serif;
@@ -48,6 +49,49 @@ pre {
   tab-size:2;
   border:1px solid #ccc;
   border-radius:3px
+}*/
+
+ul, ol {
+    padding: 0;
+    padding-left: 24px;
+}
+
+li {
+    line-height: 24px;
+}
+
+li ul, li ol {
+    margin-left: 16px;
+}
+
+p, ul, ol {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+pre {
+    display: block;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+code {
+    font-family: Consolas, Monaco, Monospace, Courier;
+    color: #8E24AA;
+    padding: 0 0.3em;
+    word-break: break-all;
+}
+
+pre code {
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    color: #222222;
+    background-color: #E0E0E0;
+    border-left: .5em solid #00897B;
+    line-height: 1.5;
+    font-family: Consolas, Monaco, Monospace, Courier;
+    white-space: pre;
 }
 
 blockquote {

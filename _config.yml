@@ -74,9 +74,6 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: next
 
-math:
-  engine: 'katex'
-
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
@@ -89,19 +86,5 @@ default_author: [nedchu]
 kramed:
   breaks: false
 
-markdown_it_plus:
-  highlight: true
-  html: true
-  xhtmlOut: true
-  breaks: true
-  langPrefix:
-  linkify: true
-  typographer:
-  quotes: “”‘’
-  plugins:
-    - plugin:
-        name: markdown-it-katex
-        enable: true
-    - plugin:
-        name: markdown-it-mark
-        enable: false
+math:
+  engine: 'katex' # or 'katex'
