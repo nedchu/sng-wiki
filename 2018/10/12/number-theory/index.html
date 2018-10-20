@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="数论," />
 
 
 
@@ -80,13 +80,14 @@
 
 
 <meta name="description" content="数论研究的是整数的性质，是数学中最古老，最易懂也最艰深的一个学科。竞赛中经常需要进行一些运算和统计，数论知识能够帮助我们正确地运算出结果。 由于在NOIP初赛之前没有几堂课了，我们将加快进度讲解题目中最常见的一些算法，熟练掌握应对常见题目所需的数论知识并查漏补缺，对于相对冷门的算法就不做进一步展开了。">
+<meta name="keywords" content="数论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数论">
 <meta property="og:url" content="https://nedchu.github.io/2018/10/12/number-theory/index.html">
 <meta property="og:site_name" content="少年宫NOIP竞赛班维基">
 <meta property="og:description" content="数论研究的是整数的性质，是数学中最古老，最易懂也最艰深的一个学科。竞赛中经常需要进行一些运算和统计，数论知识能够帮助我们正确地运算出结果。 由于在NOIP初赛之前没有几堂课了，我们将加快进度讲解题目中最常见的一些算法，熟练掌握应对常见题目所需的数论知识并查漏补缺，对于相对冷门的算法就不做进一步展开了。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-13T03:03:22.534Z">
+<meta property="og:updated_time" content="2018-10-20T06:05:01.606Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数论">
 <meta name="twitter:description" content="数论研究的是整数的性质，是数学中最古老，最易懂也最艰深的一个学科。竞赛中经常需要进行一些运算和统计，数论知识能够帮助我们正确地运算出结果。 由于在NOIP初赛之前没有几堂课了，我们将加快进度讲解题目中最常见的一些算法，熟练掌握应对常见题目所需的数论知识并查漏补缺，对于相对冷门的算法就不做进一步展开了。">
@@ -290,6 +291,26 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/sng-wiki/categories/教程/" itemprop="url" rel="index">
+                    <span itemprop="name">教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -341,6 +362,8 @@
         <p>数论研究的是整数的性质，是数学中最古老，最易懂也最艰深的一个学科。竞赛中经常需要进行一些运算和统计，数论知识能够帮助我们正确地运算出结果。</p>
 <p>由于在NOIP初赛之前没有几堂课了，我们将加快进度讲解题目中最常见的一些算法，熟练掌握应对常见题目所需的数论知识并查漏补缺，对于相对冷门的算法就不做进一步展开了。</p>
 <a id="more"></a>
+<h1 id="数论"><a href="#数论" class="headerlink" title="数论"></a>数论</h1><p>数论研究的是整数的性质，是数学中最古老，最易懂也最艰深的一个学科。竞赛中经常需要进行一些运算和统计，数论知识能够帮助我们正确地运算出结果。</p>
+<p>由于在NOIP初赛之前没有几堂课了，我们将加快进度讲解题目中最常见的一些算法，熟练掌握应对常见题目所需的数论知识并查漏补缺，对于相对冷门的算法就不做进一步展开了。</p>
 <h2 id="符号介绍"><a href="#符号介绍" class="headerlink" title="符号介绍"></a>符号介绍</h2><p>$b\mid a$表示$b$整除$a$，$a$被$b$整除，或者说$a$是$b$的倍数。</p>
 <p>$a\% M$以及$a\mod M$表示，带余数除法中$a$除以$M$的余数。</p>
 <p>$a \equiv b \mod M$表示$a,b$模$M$的余数相同，或者说$a,b$关于$M$同余。</p>
@@ -358,6 +381,12 @@
 <h2 id="素数筛"><a href="#素数筛" class="headerlink" title="素数筛"></a>素数筛</h2><p>最简单的筛法是埃氏筛法，大部分情况使用这种筛就能够有足够的效率，具体思路就是使用每个素数标记他们的倍数为合数，代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> vis[N];</span><br><span class="line"><span class="keyword">int</span> p[N];</span><br><span class="line"><span class="keyword">int</span> tot = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getPrime</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  vis[<span class="number">1</span>] = <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!vis[i]) &#123;</span><br><span class="line">      p[++tot] = i;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> j = i+i; j &lt;= n; j += i) vis[j] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>还有一种线性的素数筛算法名叫欧拉筛，主要是利用求欧拉函数的方法来求出所有素数，有兴趣的同学可以学习更快的欧拉筛。</p>
 <p>如果想要求$[a,b]$内的素数，满足$|a|,|b|$较大而$b-a$比较小，就可以用$\sqrt{b}$内的素数来筛。</p>
+<h2 id="积性函数"><a href="#积性函数" class="headerlink" title="积性函数"></a>积性函数</h2><p>积性函数$f$满足对于任意互素的$a,b$有$f(ab)=f(a)\times f(b)$，完全积性函数对任意$a,b$有$f(ab)=f(a)\times f(b)$</p>
+<p>常见的积性函数有欧拉函数，莫比乌斯函数，约数个数等等，利用积性函数的性质能够方便地求解它们。</p>
+<p>对于素因数分解后的$x=\prod_{i=1}^n{p_i^{a_i}}$和积性函数$f$满足$f(x)=\prod_{i=1}^n{f(p_i^{a_i})}$</p>
+<p>也就是说对于积性函数来说，一个数的函数值和它每个素因数幂次的函数值的累乘，求解素数幂次的函数值一般更加容易。</p>
+<p>了解积性函数的好处在于：如果遇到难以求解或者找不到规律的函数，有可能它是积性函数，能够分解素因数求解后合并。可以假设它是积性函数进行验证和尝试，会比漫无目的地思考有效得多。</p>
+<p>比如一个数的约数个数$d(x)=\prod_{i=1}^n{(a_i+1)}$，在知道有这个公式的时候，容易想到可以考虑每个素因数取幂次$0,1,\cdots,a_i$一共$a_i+1$种情况，每个素因数相互独立所以直接累乘即可。可是在不知道这个公式的时候很多时候不一定能够轻易想到分解素因数的思路，而从积性函数的角度则比较容易观察出这条性质。</p>
 <h2 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h2><p>快速幂主要是为了快速求出$a^b$。由于幂函数增长快，通常会求快速幂取模， 也就是求$a^b\mod M$。</p>
 <p>快速幂就是将指数$b$使用二进制表示，比如$a^5=a^{(101)_2}=a^4\times a^1$</p>
 <p>初始令结果$res=1$，枚举$p=1,2,4,8,\cdots$其中$p=2^k$，如果$b$的第$k$位为$1$就将$res$乘以$a^p$</p>
@@ -380,7 +409,8 @@
 <p>当$M$不是素数，但$a,M$互质的时候，可以使用扩展欧几里得求解逆元。</p>
 <p>在<a href="https://blog.csdn.net/ACdreamers/article/details/8220787" target="_blank" rel="noopener">逆元详解</a>中还讨论了线性处理逆元表的方法，还有其他逆元的求解方法和应用。</p>
 <h2 id="费马小定理"><a href="#费马小定理" class="headerlink" title="费马小定理"></a>费马小定理</h2><p>费马小定理：对于质数$M$而言，有$a^{M}\equiv a\mod M$</p>
-<p>当$a,M$互质或者说$a$不是$M$的倍数的时候，就有$a^{M-1}=a\times a^{M-2}\equiv 1\mod M$</p>
+<p>当$a,M$互质或者说$a$不是$M$的倍数的时候，就有：</p>
+<p>$$a^{M-1}=a\times a^{M-2}\equiv 1\mod M$$</p>
 <p>根据逆元的定义容易发现$a^{M-2}$是元素$a$的逆元，利用快速幂求解$a^{M-2}\% M$即可。</p>
 <p>为了方便，竞赛题目经常给出$10^9+7,10^9+9$之类的大素数，使用费马小定理能够解决大多数使用逆元的场景。</p>
 <p>费马小定理是数论四大定理之一，它也是另一个四大定理欧拉定理的特例，利用欧拉定理和欧拉函数能够解决更困难的问题。</p>
@@ -389,11 +419,47 @@
 <p>优化一些的话，可以利用组合数的递推公式$C_n^m=C_{n-1}^m+C_{n-1}^{m-1}$，枚举最后一个元素选不选，选就是$C_{n-1}^{m-1}$，不选就是$C_{n-1}^m$，这种方法能够处理$10^3$级别的数据。代码如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">  C[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; j++) &#123;</span><br><span class="line">    C[i][j] = (C[i<span class="number">-1</span>][j<span class="number">-1</span>] + C[i<span class="number">-1</span>][j]) % M;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上述方法有些时候仍然没有办法满足需求，当模数$M$为素数时可以利用费马小定理求解组合数取模。</p>
-<p>将组合数公式变形$$C_n^m=\frac{n!}{m!\cdot(n-m)!}\equiv n!\times (m!)^{-1}\times((n-m)!)^{-1}\mod M$$</p>
+<p>将组合数公式变形可以获得如下结果：</p>
+<p>$$C_n^m=\frac{n!}{m!\cdot(n-m)!}\equiv n!\times (m!)^{-1}\times((n-m)!)^{-1}\mod M$$</p>
 <p>利用递推预处理所有$n!\%M$，然后利用费马小定理求解逆元就能获得如下公式：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">C</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> fac[n] * inv(fac[m], M) % M * inv(fac[n-m], M) % M;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>当模数$M$比较小，达到$10^6$级别的时候，可以通过 Lucas定理 求解$n,m$很大的组合数。</p>
-<p>当模数是合数的时候可以对$M$分解素因数，利用 Lucas定理 求出组合数模每个素因数的余数再用中国剩余定理合并结果。</p>
+<p>当模数是合数而且素因数都不大的时候，可以对$M$分解素因数，利用 Lucas定理 求出组合数模每个素因数的余数再用中国剩余定理合并结果。</p>
+<h2 id="矩阵定义"><a href="#矩阵定义" class="headerlink" title="矩阵定义"></a>矩阵定义</h2><p>矩阵通常是指这样的东西：$\begin{bmatrix}1 &amp; 2\\ 3 &amp; 4\end{bmatrix}\newcommand{\x}{\boldsymbol{x}}\newcommand{\b}{\boldsymbol{b}}\newcommand{\y}{\boldsymbol{y}}\newcommand{\A}{\boldsymbol{A}}\newcommand{\B}{\boldsymbol{B}}\newcommand{\C}{\boldsymbol{C}}$</p>
+<p>矩阵有$n$行$m$列，一共$n\times m$个元素，第$i$行第$j$列的元素为$\A_{i,j}$，矩阵一般记作大写粗体字母。</p>
+<p>特别的，$1\times n$的矩阵被称为行向量，$n\times 1$的矩阵被称为列向量，第$i$个元素为$\x_i$，向量一般记作小写粗体字母。</p>
+<p>向量有多少个元素就称它有多少维，$n\times m$的矩阵也可以看做是$m$个$n$维列向量或者$n$个$m$维行向量。</p>
+<p>形状相同的矩阵能够进行加法，产生一个形状一样的矩阵。若$\C=\A+\B$则有：$\C_{i,j}=\A_{i,j}+\B_{i,j}$</p>
+<h2 id="矩阵乘法"><a href="#矩阵乘法" class="headerlink" title="矩阵乘法"></a>矩阵乘法</h2><p>矩阵中最基础的乘法是$n$维行向量$\x$乘以$n$维列向量$\y$获得一个值，表示为$\x\cdot \y=v$</p>
+<p>行向量乘以列向量的结果为他们第$i$维值相乘后累加的结果，向量乘法又称为点积：</p>
+<p>$$\x\cdot\y=\sum_{i=1}^n{\x_i\cdot \y_i}$$</p>
+<p>点积能够表达$n$元一次方程：</p>
+<p>$$ \begin{bmatrix}1 &amp; 2\end{bmatrix} \begin{bmatrix}x\\ y\end{bmatrix}= \begin{bmatrix}x+2y\end{bmatrix}$$</p>
+<p>矩阵和向量也可以进行乘法，要求是$n\times m$的矩阵$\A$乘以$m\times 1$的列向量$\x$，获得一个$n\times 1$的列向量$\b$。</p>
+<p>可以将矩阵和向量的乘法看做矩阵中的$n$个$m$维行向量分别和列向量做点积，获得结果的每一维：</p>
+<p>$$\begin{bmatrix}1 &amp; 2\\ 3 &amp; 4\\ 5 &amp; 6\end{bmatrix} \begin{bmatrix}x\\ y\end{bmatrix}=\begin{bmatrix}x+2y\\3x+4y\\5x+6y\end{bmatrix}=\begin{bmatrix}3\\ 7\\ 11\end{bmatrix}$$</p>
+<p>向量相等需要每一个分量，以上乘法可以看做两元一次方程组的另一种表达形式。</p>
+<p>任意的$n$元一次方程组均可以表达为$\A\x=\b$，其中$\A$为参数，$\x$为未知量，$\b$为结果。</p>
+<p>有了上述定义之后，能够比较容易推导出矩阵之间的乘法。</p>
+<p>矩阵乘法要求$n\times m$的矩阵$\A$乘以$m\times p$的矩阵$\B$，获得一个$n\times p$的矩阵$\C$。</p>
+<p>矩阵乘法能够拆分为矩阵和向量的乘法，看做是$\A$乘以$\B$中的第$i$列，获得$\C$中的$i$列：</p>
+<p>$$\begin{align*}\A \B &amp;= \A \begin{bmatrix} \B_{*,1} &amp; \B_{*,2} &amp; \cdots &amp; \B_{*,p}\end{bmatrix}\\ &amp;= \begin{bmatrix} \A \B_{*,1} &amp; \A \B_{*,2} &amp; \cdots &amp; \A \B_{*,p}\end{bmatrix} \\ &amp;= \begin{bmatrix}\C_{*,1} &amp; \C_{*,2} &amp; \cdots &amp; \C_{*,p}\end{bmatrix}\\ &amp;= \C\end{align*}<br>$$</p>
+<p>同时根据矩阵和向量乘法和向量点积的运算规则，能够推导出以下公式，该公式很容易使用计算机计算：</p>
+<p>$$\C_{i,j}=\sum_{k=1}^m{\A_{i,k}\B_{k,j}}$$</p>
+<p>矩阵乘法满足结合律$(\A\B)\C=\A(\B\C)$，当然矩阵需要能够进行相乘才行。矩阵乘法不满足交换律。</p>
+<p>容易发现矩阵乘法运算的复杂度为$O(nmp)$。</p>
+<h2 id="矩阵快速幂"><a href="#矩阵快速幂" class="headerlink" title="矩阵快速幂"></a>矩阵快速幂</h2><p>矩阵快速幂在算法竞赛中非常常见，常常用来优化递推的问题，虽然选手们常称之为dp。</p>
+<p>矩阵快速幂就是用来运算$\A^p$的，算法的思路和普通快速幂一样，只是乘法运算为矩阵的乘法。</p>
+<p>由于需要能和自身做乘法运算，矩阵快速幂运算需要作用于方阵，即$n\times n$的矩阵。</p>
+<p>$n$维行向量乘以$\A^p$会获得一个$n$维行向量，$\A^p$乘以$n$维列向量会获得一个$n$维列向量。</p>
+<p>矩阵快速幂的方阵根据结合律可以先拆出来和向量做乘法，这个乘法可以看做向量维度不变但数值变化的一次变换。</p>
+<p>考虑斐波那契数列，有$F_0=F_1=1$满足递推关系$F_i=F_{i-1}+F_{i-2}$。</p>
+<p>该递推关系可以看做是线性方程，能够发现$F_{i+2}=\begin{bmatrix}1 &amp; 1\end{bmatrix}\begin{bmatrix}F_i\\ F_{i+1}\end{bmatrix}$</p>
+<p>需要对同一个维度的向量不断变换，所以左边也要是两维，凑一下得到：</p>
+<p>$$\begin{bmatrix}F_{i+1}\\F_{i+2}\end{bmatrix}=\begin{bmatrix}0 &amp; 1\\1 &amp; 1\end{bmatrix}\begin{bmatrix}F_i\\ F_{i+1}\end{bmatrix}$$</p>
+<p>将所有的转换矩阵表示成幂次的形式，可以获得如下方程：</p>
+<p>$$\begin{bmatrix}F_{n}\\F_{n+1}\end{bmatrix}=\begin{bmatrix}0 &amp; 1\\1 &amp; 1\end{bmatrix}^n\begin{bmatrix}F_0\\ F_1\end{bmatrix}$$</p>
+<p>对变换矩阵做矩阵快速幂后再做一次矩阵和向量的乘法就能够获得结果，矩阵快速幂的复杂度为$O(n^3\log p)$</p>
 
       
     </div>
@@ -408,6 +474,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/sng-wiki/tags/数论/" rel="tag"># 数论</a>
+          
+        </div>
       
 
       
@@ -525,7 +597,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/sng-wiki/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -560,7 +632,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#符号介绍"><span class="nav-number">1.</span> <span class="nav-text">符号介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欧几里得算法"><span class="nav-number">2.</span> <span class="nav-text">欧几里得算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#素数判断与分解质因数"><span class="nav-number">3.</span> <span class="nav-text">素数判断与分解质因数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#素数筛"><span class="nav-number">4.</span> <span class="nav-text">素数筛</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速幂"><span class="nav-number">5.</span> <span class="nav-text">快速幂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逆元"><span class="nav-number">6.</span> <span class="nav-text">逆元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逆元的求解"><span class="nav-number">7.</span> <span class="nav-text">逆元的求解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#费马小定理"><span class="nav-number">8.</span> <span class="nav-text">费马小定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合数取模"><span class="nav-number">9.</span> <span class="nav-text">组合数取模</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数论"><span class="nav-number">1.</span> <span class="nav-text">数论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#符号介绍"><span class="nav-number">1.1.</span> <span class="nav-text">符号介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欧几里得算法"><span class="nav-number">1.2.</span> <span class="nav-text">欧几里得算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#素数判断与分解质因数"><span class="nav-number">1.3.</span> <span class="nav-text">素数判断与分解质因数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#素数筛"><span class="nav-number">1.4.</span> <span class="nav-text">素数筛</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#积性函数"><span class="nav-number">1.5.</span> <span class="nav-text">积性函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速幂"><span class="nav-number">1.6.</span> <span class="nav-text">快速幂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逆元"><span class="nav-number">1.7.</span> <span class="nav-text">逆元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逆元的求解"><span class="nav-number">1.8.</span> <span class="nav-text">逆元的求解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#费马小定理"><span class="nav-number">1.9.</span> <span class="nav-text">费马小定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合数取模"><span class="nav-number">1.10.</span> <span class="nav-text">组合数取模</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵定义"><span class="nav-number">1.11.</span> <span class="nav-text">矩阵定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵乘法"><span class="nav-number">1.12.</span> <span class="nav-text">矩阵乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵快速幂"><span class="nav-number">1.13.</span> <span class="nav-text">矩阵快速幂</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -786,7 +858,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
   
 
 
