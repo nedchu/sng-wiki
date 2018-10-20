@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="少年宫NOIP竞赛班维基">
 <meta property="og:description" content="数论研究的是整数的性质，是数学中最古老，最易懂也最艰深的一个学科。竞赛中经常需要进行一些运算和统计，数论知识能够帮助我们正确地运算出结果。 由于在NOIP初赛之前没有几堂课了，我们将加快进度讲解题目中最常见的一些算法，熟练掌握应对常见题目所需的数论知识并查漏补缺，对于相对冷门的算法就不做进一步展开了。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-20T06:05:01.606Z">
+<meta property="og:updated_time" content="2018-10-20T11:53:25.241Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数论">
 <meta name="twitter:description" content="数论研究的是整数的性质，是数学中最古老，最易懂也最艰深的一个学科。竞赛中经常需要进行一些运算和统计，数论知识能够帮助我们正确地运算出结果。 由于在NOIP初赛之前没有几堂课了，我们将加快进度讲解题目中最常见的一些算法，熟练掌握应对常见题目所需的数论知识并查漏补缺，对于相对冷门的算法就不做进一步展开了。">
@@ -397,7 +397,7 @@
 <p>当模数规模增大的时候，无法直接求出正确的平方取模，可以利用类似快速幂的做法将$a\times a$中的一个$a$按照二进制展开，比如$5\times 5=5\times 4 + 5\times 1$</p>
 <p>将快速幂中的乘法替代为上述的乘法之后，快速幂能够支持的规模就能达到$10^{18}$了。</p>
 <h2 id="逆元"><a href="#逆元" class="headerlink" title="逆元"></a>逆元</h2><p>关于逆元有一篇比较详细的讨论：<a href="https://blog.csdn.net/ACdreamers/article/details/8220787" target="_blank" rel="noopener">逆元详解</a></p>
-<p>逆元就是将变化逆转回去的元素。比如对于一般的加法而言元素$a$的逆元就是$-a$，因为$x+a+(-a)=a$。对于一般的乘法而言元素$a$的逆元是$\frac{1}{a}$，因为$x\cdot a\cdot\frac{1}{a}=a$，注意$0$没有乘法逆元。</p>
+<p>逆元就是将变化逆转回去的元素。比如对于一般的加法而言元素$a$的逆元就是$-a$，因为$x+a+(-a)=x$。对于一般的乘法而言元素$a$的逆元是$\frac{1}{a}$，因为$x\cdot a\cdot\frac{1}{a}=x$，注意$0$没有乘法逆元。</p>
 <p>竞赛中由于结果可能很大，经常需要对计算结果取余数，此时如果没有数论知识就无法计算出正确的结果。最为常见的是结果中需要利用组合数，组合数由于太大没法直接计算取模，需要利用数论知识指导来进行计算。</p>
 <p>首先来考虑一下模意义下的运算，对于加法而言有$(a+b)\%M=((a\% M)+(b\% M)) \% M$，由于乘法可以看成加法的累积对于乘法也会有类似的结论。</p>
 <p>但是当$b\mid a$时，显然有$(a/b)\% M\neq((a\% M)/(b\% M))\% M$</p>
